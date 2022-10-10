@@ -1,0 +1,32 @@
+1) Watch the first 5 min and answer this
+What will the DOM structure look like for this , explain in terms of attributes and everything
+
+<head>
+<h1> Title </h1>
+</head>
+<body>
+<input type="text" name="Name" />
+<input type="button" value="Submit" />
+</body>
+
+ans: Under Head tag we will be having title node. Under Body Tag we are having two child input nodes
+
+
+
+2) Watch uptill the 17th min and write the code as per the youtuber does. Manipulate the title of the page and experiment with other things
+
+ans:
+const headerTitle = document.getElementById("header-title");
+headerTitle.innerText  = "Title Manipulated"
+
+
+
+3)Watch from the 17th min uptill 23min , and answer the following (getElementbyID)
+
+Difference between innertext and textcontent.
+Watch uptill 23min - Make the title have a black border as the youtuber does
+Now make ADD ITEM bold and chage the font color to greeen
+
+
+ans:
+innertext does not care about styling whereas  textcontent does.
