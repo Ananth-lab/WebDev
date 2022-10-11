@@ -1,0 +1,26 @@
+*{
+    margin:0;
+    padding:0;
+}
+h1{
+    text-align: center;
+    color: red;
+    padding:3rem;
+}
+
+form{
+    border: solid 2px black;
+    width:50%;
+    margin: auto;
+    padding:20px;
+    background-color: rgb(236, 226, 226);
+}
+input, label{
+    padding:0.2rem;
+    display: block;
+}
+button{
+    width:5rem;
+    height: 2rem;
+    margin:1rem auto;
+}
