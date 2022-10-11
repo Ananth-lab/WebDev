@@ -45,7 +45,21 @@
 // }
 // li[2].style.backgroundColor = "green"
 
-var li = document.getElementsByTagName('li')
-li[4].textContent = "Bye";
-let li1 = document.getElementsByClassName("item5");
-li1[0].style.backgroundColor = "blue"
+// var li = document.getElementsByTagName('li')
+// li[4].textContent = "Bye";
+// let li1 = document.getElementsByClassName("item5");
+// li1[0].style.backgroundColor = "blue"
+
+let list = document.querySelectorAll(".list-group-item");
+
+// list[1].style.backgroundColor = "green";
+// list[2].style.display = "none";
+
+list[1].style.color = "green"
+
+let odd = document.querySelectorAll("li:nth-Child(odd)");
+let even = document.querySelectorAll("li:nth-child(even");
+for(let i = 0; i < odd.length; i++){
+    odd[i].style.backgroundColor = "green"
+    even[i].style.backgroundColor ="grey"
+}

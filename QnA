@@ -1,9 +1,41 @@
+1)Make the 2nd item have green background color
+let list = document.querySelectorAll(".list-group-item");
+list[1].style.backgroundColor = "green";
+list[2].style.display = "none";
 
-1)Add a new li element without the same class Name
-And try editing it with getelementsbyclassname and then by getelementbytagname
+2)Make the 3rd item invisible
+let list = document.querySelectorAll(".list-group-item");
+list[2].style.display = "none";
 
 
-var li = document.getElementsByTagName('li')
-li[4].textContent = "Bye";
-let li1 = document.getElementsByClassName("item5");
-li1[0].style.backgroundColor = "blue"
+1)Using QuerySelectorALL change the font color to green for 2nd item in the item list
+let list = document.querySelectorAll(".list-group-item");
+
+// list[1].style.backgroundColor = "green";
+// list[2].style.display = "none";
+
+list[1].style.color = "green"
+
+let odd = document.querySelectorAll("li:nth-Child(odd)");
+let even = document.querySelectorAll("li:nth-child(even");
+for(let i = 0; i < odd.length; i++){
+    odd[i].style.backgroundColor = "green"
+    even[i].style.backgroundColor ="grey"
+
+2)Choose all the odd elements and make their background green using QuerySelectorALL﻿
+let list = document.querySelectorAll(".list-group-item");
+
+// list[1].style.backgroundColor = "green";
+// list[2].style.display = "none";
+
+list[1].style.color = "green"
+
+let odd = document.querySelectorAll("li:nth-Child(odd)");
+let even = document.querySelectorAll("li:nth-child(even");
+for(let i = 0; i < odd.length; i++){
+    odd[i].style.backgroundColor = "green"
+    even[i].style.backgroundColor ="grey"
+
+
+3)What is the difference between queryselector and queryselectorall?
+querySelector returns a single element matching its selection criteria. querySelectorAll, on the other hand, returns all elements matching the search criteria in an iterable list
