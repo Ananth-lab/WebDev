@@ -17,12 +17,18 @@
 
 //getelementbyid
 
-const headerTitle = document.getElementById("header-title");
-headerTitle.innerText  = "Title Manipulated";
-headerTitle.style.borderBottom = "solid 5px #000";
+// const headerTitle = document.getElementById("header-title");
+// headerTitle.innerText  = "Title Manipulated";
+// headerTitle.style.borderBottom = "solid 5px #000";
 
 
 //getelementbyclassname
 
-const title = document.getElementsByClassName("title")
-title.style.color = "green"
+var items = document.getElementsByClassName('list-group-item')
+items[1].textContent = "Hello 2";
+items[1].style.fontWeight = "bold";
+items[1].style.backgroundColor = "yellow";
+for(let i = 0; i <items.length; i++){
+    items[i].style.fontWeight = "bold"
+}
+items[2].style.backgroundColor = "green"

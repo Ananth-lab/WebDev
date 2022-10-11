@@ -1,32 +1,47 @@
-1) Watch the first 5 min and answer this
-What will the DOM structure look like for this , explain in terms of attributes and everything
+1)Write the code as per the youtuber does
 
-<head>
-<h1> Title </h1>
-</head>
-<body>
-<input type="text" name="Name" />
-<input type="button" value="Submit" />
-</body>
+//EXAMINING THE DOCUMENT OBJECT
 
-ans: Under Head tag we will be having title node. Under Body Tag we are having two child input nodes
+// console.dir(document)
 
-
-
-2) Watch uptill the 17th min and write the code as per the youtuber does. Manipulate the title of the page and experiment with other things
-
-ans:
-const headerTitle = document.getElementById("header-title");
-headerTitle.innerText  = "Title Manipulated"
+// console.log(document.domain)
+// console.log(document.URL)
+// console.log(document.title)
+// console.log(document.doctype)
+// console.log(document.body)
+// console.log(document.all)
+// console.log(document.all[10])
+// console.log(document.links)
+// console.log(document.images)
 
 
+//SELECTORS
 
-3)Watch from the 17th min uptill 23min , and answer the following (getElementbyID)
+//getelementbyid
 
-Difference between innertext and textcontent.
-Watch uptill 23min - Make the title have a black border as the youtuber does
-Now make ADD ITEM bold and chage the font color to greeen
+// const headerTitle = document.getElementById("header-title");
+// headerTitle.innerText  = "Title Manipulated";
+// headerTitle.style.borderBottom = "solid 5px #000";
 
 
-ans:
-innertext does not care about styling whereas  textcontent does.
+//getelementbyclassname
+
+var items = document.getElementsByClassName('list-group-item')
+items[1].textContent = "Hello 2";
+items[1].style.fontWeight = "bold";
+items[1].style.backgroundColor = "yellow";
+for(let i = 0; i <items.length; i++){
+    items[i].style.fontWeight = "bold"
+}
+items[2].style.backgroundColor = "green"
+
+
+
+2)Make the 3 rd element in the list have green background color
+items[2].style.backgroundColor = "green"
+
+
+3)Make all the elements in the list have bold color font
+for(let i = 0; i <items.length; i++){
+    items[i].style.fontWeight = "bold"
+}
