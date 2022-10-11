@@ -24,11 +24,28 @@
 
 //getelementbyclassname
 
-var items = document.getElementsByClassName('list-group-item')
-items[1].textContent = "Hello 2";
-items[1].style.fontWeight = "bold";
-items[1].style.backgroundColor = "yellow";
-for(let i = 0; i <items.length; i++){
-    items[i].style.fontWeight = "bold"
-}
-items[2].style.backgroundColor = "green"
+// var items = document.getElementsByClassName('list-group-item')
+// items[1].textContent = "Hello 2";
+// items[1].style.fontWeight = "bold";
+// items[1].style.backgroundColor = "yellow";
+// for(let i = 0; i <items.length; i++){
+//     items[i].style.fontWeight = "bold"
+// }
+// items[2].style.backgroundColor = "green"
+
+
+//getElementByTagName
+
+// var li = document.getElementsByTagName('li')
+// li[1].textContent = "Hello 2";
+// li[1].style.fontWeight = "bold";
+// li[1].style.backgroundColor = "yellow";
+// for(let i = 0; i <li.length; i++){
+//     li[i].style.fontWeight = "bold"
+// }
+// li[2].style.backgroundColor = "green"
+
+var li = document.getElementsByTagName('li')
+li[4].textContent = "Bye";
+let li1 = document.getElementsByClassName("item5");
+li1[0].style.backgroundColor = "blue"

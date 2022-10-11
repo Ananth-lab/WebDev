@@ -1,47 +1,9 @@
-1)Write the code as per the youtuber does
 
-//EXAMINING THE DOCUMENT OBJECT
-
-// console.dir(document)
-
-// console.log(document.domain)
-// console.log(document.URL)
-// console.log(document.title)
-// console.log(document.doctype)
-// console.log(document.body)
-// console.log(document.all)
-// console.log(document.all[10])
-// console.log(document.links)
-// console.log(document.images)
+1)Add a new li element without the same class Name
+And try editing it with getelementsbyclassname and then by getelementbytagname
 
 
-//SELECTORS
-
-//getelementbyid
-
-// const headerTitle = document.getElementById("header-title");
-// headerTitle.innerText  = "Title Manipulated";
-// headerTitle.style.borderBottom = "solid 5px #000";
-
-
-//getelementbyclassname
-
-var items = document.getElementsByClassName('list-group-item')
-items[1].textContent = "Hello 2";
-items[1].style.fontWeight = "bold";
-items[1].style.backgroundColor = "yellow";
-for(let i = 0; i <items.length; i++){
-    items[i].style.fontWeight = "bold"
-}
-items[2].style.backgroundColor = "green"
-
-
-
-2)Make the 3 rd element in the list have green background color
-items[2].style.backgroundColor = "green"
-
-
-3)Make all the elements in the list have bold color font
-for(let i = 0; i <items.length; i++){
-    items[i].style.fontWeight = "bold"
-}
+var li = document.getElementsByTagName('li')
+li[4].textContent = "Bye";
+let li1 = document.getElementsByClassName("item5");
+li1[0].style.backgroundColor = "blue"
