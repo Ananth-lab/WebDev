@@ -24,3 +24,10 @@ button{
     height: 2rem;
     margin:1rem auto;
 }
+li {
+    text-align: center;
+    list-style-type: none;
+    margin : 1rem;
+    padding:5px;
+    background-color: aqua;
+}
