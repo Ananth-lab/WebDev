@@ -1,0 +1,13 @@
+Promise. all is very efficeint when it comes to save time. lets suppose consider two independent function which will take independent time
+to complete the tasks, if we put them inside then block it will work but takes a lot time, to avoid this we use Promise.alll which executed both 
+promises in one go thereby saving time.
+
+
+
+
+Callback vs Promises
+
+Callback mainly has two problems, inversion of control(function where we are using callback function is responsible to call the callback function
+if it fails, or calls the callback twice we cant do anything). and another is callback hell
+
+whereas promises give assurity by giving two options namely then and catch
