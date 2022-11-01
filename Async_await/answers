@@ -1,0 +1,20 @@
+In Promises there will be a possibility of promise hell we can avoid that using async function.
+Sync function will provide better readability to your code .
+
+
+
+console.log("Straight away")
+console.log("wait for me for 3 second :(")
+function printNumbers(){
+    return new Promise((resolve, reject) => {
+       setTimeout(() => {
+        console.log("I have waited...")
+        resolve()
+       }, 3000)
+    })
+}
+async function printAgain(){
+    await printNumbers();
+    console.log("thanks! lets go")
+}
+printAgain()
