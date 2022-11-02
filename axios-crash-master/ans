@@ -1,0 +1,12 @@
+1. Header is something which you want to send everytime ehenever you make a network call.
+
+
+2. Axios is the tool which helps us to communicate with the server using HTTP.
+
+
+3.Syntax errors- we need to check the syntax properly
+  URL missunderstanding - need to understand what is route, url, baseurl and all.
+  debugging issues.
+  end point doesnot exists- We need to check in Postman
+  strigifying mistakes
+  payload errors 
