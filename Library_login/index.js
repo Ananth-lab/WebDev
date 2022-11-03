@@ -10,6 +10,10 @@ function save(e){
         name : username.value,
         mail : email.value
     }
+
+    axios.post("https://crudcrud.com/api/877a14ad6fe44f1f9dde829c3fed0a97/appointmentData", creds)
+    .then(resp => console.log(resp))
+    .catch(err => console.log(err))
     if(JSON.parse(localStorage.getItem(`User details ${creds.name}`))){
         removeUser(creds.name);
     }     
@@ -24,6 +28,8 @@ function save(e){
                 parent.remove()
          }
     }
+
+
     function addUser(username, email){
         let ul = document.querySelector(".members");
         let li = document.createElement("li");
