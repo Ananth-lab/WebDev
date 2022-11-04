@@ -2,35 +2,53 @@ const submit = document.querySelector("#Submit");
 
 submit.addEventListener("click", save)
 
+
+function showUserOnScreen(user){
+    let ul = document.querySelector("ul")
+    let li = document.createElement("li");
+    let edt = document.createElement("button")
+    let dlt = document.createElement("button")
+    li.appendChild(document.createTextNode(`${user.username}  `));
+    li.appendChild(document.createTextNode(`  ${user.useremail}`));
+    edt.className = "edit";
+    dlt.className = "delete";
+    edt.appendChild(document.createTextNode("Edit"));
+    dlt.appendChild(document.createTextNode("Delete"))
+    li.appendChild(edt)
+    li.appendChild(dlt)
+    ul.appendChild(li)
+    dlt.addEventListener("click", (e) =>{
+        e.preventDefault();
+        parent = dlt.parentElement;
+        parent.remove()
+    })
+
+    edt.addEventListener("click", (e) =>{
+        e.preventDefault();
+        parent = dlt.parentElement;
+        parent.remove()
+    })
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
-    for (const [key, value] of Object.entries(localStorage)) {
-        let ul = document.querySelector("ul")
-        let li = document.createElement("li");
-        let edt = document.createElement("button")
-        let dlt = document.createElement("button")
-        li.appendChild(document.createTextNode(`${key}  `));
-        li.appendChild(document.createTextNode(`  ${value}`));
-        edt.className = "edit";
-        dlt.className = "delete";
-        edt.appendChild(document.createTextNode("Edit"));
-        dlt.appendChild(document.createTextNode("Delete"))
-        li.appendChild(edt)
-        li.appendChild(dlt)
-        ul.appendChild(li)
+    // const localStorageObj = localStorage;
+    // const localStorageKeys = Object.keys(localStorageObj)
+    // for(let i = 0; i < localStorageKeys.length; i++){
+    //     const key = localStorageKeys[i];
+    //     const userDetailsSting = localStorageObj[key];
+    //     const userDetailsObj = JSON.parse(userDetailsSting);
+    //     showUserOnScreen(userDetailsObj)
+    // }
 
-        dlt.addEventListener("click", (e) =>{
-            e.preventDefault();
-            parent = dlt.parentElement;
-            parent.remove()
-        })
-
-        edt.addEventListener("click", (e) =>{
-            e.preventDefault();
-            parent = dlt.parentElement;
-            parent.remove()
-        })
-     }
-})
+    axios.get("https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData")
+    .then((response) => {
+        for(let i = 0; i < response.data.length; i++){
+            console.log(response.data[i])
+            showUserOnScreen(response.data[i])
+        }
+    })
+  })
 function save(e) {
     e.preventDefault();
     const name = document.querySelector("#name");
@@ -79,8 +97,9 @@ function save(e) {
         }
 
         function addUserToLocalStorage() {
-            localStorage.setItem(JSON.stringify(userDetails.username), JSON.stringify (userDetails.useremail))
-            axios.post("https://crudcrud.com/api/877a14ad6fe44f1f9dde829c3fed0a97/appointmentData", userDetails)
+            let userDetailsString = JSON.stringify(userDetails)
+            localStorage.setItem(`${userDetails.username}`, userDetailsString)
+            axios.post("https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData", userDetails)
         }
     }
 }
