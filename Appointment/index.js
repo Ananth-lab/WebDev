@@ -18,15 +18,16 @@ function showUserOnScreen(user) {
     li.appendChild(dlt)
     ul.appendChild(li)
     dlt.addEventListener("click", (e) => {
-         e.preventDefault();
-         parent = dlt.parentElement;
+        e.preventDefault();
+        parent = dlt.parentElement;
         //
-        let url = `https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData/${user._id}`
-        axios.delete(url).then( parent.remove()).catch(error => console.log(error))
+        let url = `https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData/${user._id}`
+        axios.delete(url).then(parent.remove()).catch(error => console.log(error))
     })
 
     edt.addEventListener("click", (e) => {
         e.preventDefault();
+        alert("Please enter the correct deails and click on Submit")
         parent = dlt.parentElement;
         parent.remove()
     })
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //     showUserOnScreen(userDetailsObj)
     // }
 
-    axios.get("https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData")
+    axios.get("https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData")
         .then((response) => {
             for (let i = 0; i < response.data.length; i++) {
                 showUserOnScreen(response.data[i])
@@ -85,18 +86,19 @@ function save(e) {
 
 
             dlt.addEventListener("click", (e) => {
-                 e.preventDefault();
+                e.preventDefault();
                 parent = dlt.parentElement;
                 // parent.remove()
-                let url = `https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData/${id}`
+                let url = `https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData/${id}`
                 axios.delete(url).then(
                     parent.remove()
                 )
-                .catch(error => console.log(error))
+                    .catch(error => console.log(error))
             })
 
             edt.addEventListener("click", (e) => {
                 e.preventDefault();
+                alert("Please enter the correct deails and click on Submit")
                 parent = dlt.parentElement;
                 parent.remove()
             })
@@ -105,7 +107,7 @@ function save(e) {
         function addUserToLocalStorage() {
             let userDetailsString = JSON.stringify(userDetails)
             localStorage.setItem(`${userDetails.username}`, userDetailsString)
-            axios.post("https://crudcrud.com/api/24a574479da0477b941d7408b00ec791/appointmentData", userDetails)
+            axios.post("https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData", userDetails)
                 .then(response => {
                     id = response.data._id;
                 })
