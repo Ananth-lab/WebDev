@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.header{
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin:2rem;
+}
+form{
+    width: 50%;
+    border: solid 0.2rem black;
+    text-align: center;
+    margin: auto;
+    background-color: aqua;
+}
+input,label,slect{
+    height: 1.5rem;
+    display: block;
+    margin:1rem auto;  
+}
+
+select{
+    width: 20%;
+    margin-bottom: 1rem;
+}
+li{
+    list-style-type: none;
+    padding-bottom: 1rem;;
+}
+button{
+    padding:.3rem;
+    margin:.5rem;
+}
