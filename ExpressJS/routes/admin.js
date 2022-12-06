@@ -1,16 +1,10 @@
 const express = require('express');
 const routes = express.Router();
-const path = require("path");
-const rootDir = require("../util/path")
+const ProductController = require('../controllers/product')
 
-routes.get('/add-product',(req,res, next) => {
-    res.sendFile(path.join(rootDir, "views",'add-product.html'))
-})
+routes.get('/add-product',ProductController.addProduct)
 
-routes.post('/add-product',(req,res, next) => {
-    console.log(JSON.stringify(req.body));
-    res.redirect("/shop")
-})
+routes.post('/add-product',ProductController.postProduct)
 
 
 module.exports = routes;
