@@ -2,10 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 const p = path.join(
-  path.dirname(process.mainModule.filename),
+  path.dirname(require.main.filename),
   'data',
   'products.json'
 );
+//home/anantharaja/Desktop/WebDev/NodeJS_Shop_Project/models/data/products.json-----__dirname
+//home/anantharaja/Desktop/WebDev/NodeJS_Shop_Project/data/products.json----  path.dirname(require.main.filename),
+
 
 const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
