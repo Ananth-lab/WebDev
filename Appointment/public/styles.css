@@ -1,9 +1,13 @@
 body {
-    margin: 0;
+    width : 20%;
+    margin:auto;
     padding: 0;
     background-color: antiquewhite;
 }
 
+input, label {
+    display: block;
+}
 ul{
     list-style-type: none;
     margin:1rem;

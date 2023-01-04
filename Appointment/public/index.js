@@ -1,15 +1,15 @@
-const submit = document.querySelector("#Submit");
+const submit = document.querySelector(".btn");
 
 submit.addEventListener("click", save)
-
 
 function showUserOnScreen(user) {
     let ul = document.querySelector("ul")
     let li = document.createElement("li");
     let edt = document.createElement("button")
     let dlt = document.createElement("button")
-    li.appendChild(document.createTextNode(`${user.username}  `));
-    li.appendChild(document.createTextNode(`  ${user.useremail}`));
+    li.appendChild(document.createTextNode(`${user.uname}  `));
+    li.appendChild(document.createTextNode(`  ${user.email}`));
+    li.appendChild(document.createTextNode(`  ${user.phone}`));
     edt.className = "edit";
     dlt.className = "delete";
     edt.appendChild(document.createTextNode("Edit"));
@@ -20,8 +20,7 @@ function showUserOnScreen(user) {
     dlt.addEventListener("click", (e) => {
         e.preventDefault();
         parent = dlt.parentElement;
-        //
-        let url = `https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData/${user._id}`
+        let url = `http://localhost:3000/delete-user/${user.id}`
         axios.delete(url).then(parent.remove()).catch(error => console.log(error))
     })
 
@@ -29,25 +28,17 @@ function showUserOnScreen(user) {
         e.preventDefault();
         alert("Please enter the correct deails and click on Submit")
         parent = dlt.parentElement;
-        parent.remove()
+        let url = `http://localhost:3000/delete-user/${user.id}`
+        axios.delete(url).then(parent.remove()).catch(error => console.log(error))
     })
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // const localStorageObj = localStorage;
-    // const localStorageKeys = Object.keys(localStorageObj)
-    // for(let i = 0; i < localStorageKeys.length; i++){
-    //     const key = localStorageKeys[i];
-    //     const userDetailsSting = localStorageObj[key];
-    //     const userDetailsObj = JSON.parse(userDetailsSting);
-    //     showUserOnScreen(userDetailsObj)
-    // }
-
-    axios.get("https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData")
+    axios.get("http://localhost:3000/get-user")
         .then((response) => {
-            for (let i = 0; i < response.data.length; i++) {
-                showUserOnScreen(response.data[i])
+            for (let i = 0; i < response.data.userslist.length; i++) {
+                showUserOnScreen(response.data.userslist[i])
             }
         })
 })
@@ -55,18 +46,19 @@ function save(e) {
     e.preventDefault();
     const name = document.querySelector("#name");
     const email = document.querySelector("#email");
+    const phone = document.querySelector("#number");
 
-    if (name.value == "" || email.value == "") {
+    if (name.value == "" || email.value == "" || phone.value == "") {
         alert("Please provide the details");
     }
     else {
         let userDetails = {
             username: name.value,
-            useremail: email.value
+            useremail: email.value,
+            userphone: phone.value
         }
-
-        addUserToScreen();
-        addUserToLocalStorage();
+        addUserToScreen(userDetails);
+        addUserToLocalStorage(userDetails);
 
         function addUserToScreen() {
             let ul = document.querySelector("ul")
@@ -75,6 +67,7 @@ function save(e) {
             let dlt = document.createElement("button")
             li.appendChild(document.createTextNode(`${userDetails.username}  `));
             li.appendChild(document.createTextNode(`  ${userDetails.useremail}`));
+            li.appendChild(document.createTextNode(`  ${userDetails.userphone}`));
             edt.className = "edit";
             dlt.className = "delete";
             edt.appendChild(document.createTextNode("Edit"));
@@ -88,28 +81,23 @@ function save(e) {
             dlt.addEventListener("click", (e) => {
                 e.preventDefault();
                 parent = dlt.parentElement;
-                // parent.remove()
-                let url = `https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData/${id}`
-                axios.delete(url).then(
-                    parent.remove()
-                )
-                    .catch(error => console.log(error))
+                let url = `http://localhost:3000/delete-user/${id}`
+                axios.delete(url).then(parent.remove()).catch(error => console.log(error))
             })
 
             edt.addEventListener("click", (e) => {
                 e.preventDefault();
-                alert("Please enter the correct deails and click on Submit")
                 parent = dlt.parentElement;
-                parent.remove()
+                alert("Please enter the correct deails and click on Submit")
+                let url = `http://localhost:3000/delete-user/${id}`
+                axios.delete(url).then(parent.remove()).catch(error => console.log(error))
             })
         }
 
-        function addUserToLocalStorage() {
-            let userDetailsString = JSON.stringify(userDetails)
-            localStorage.setItem(`${userDetails.username}`, userDetailsString)
-            axios.post("https://crudcrud.com/api/cc832c3f5cea4bdba758a8fa9eb2c648/appointmentData", userDetails)
+        function addUserToLocalStorage(userDetails) {
+            axios.post("http://localhost:3000/add-user", userDetails)
                 .then(response => {
-                    id = response.data._id;
+                    id = response.data.newUserDetail.id;
                 })
                 .catch(error => console.log(error))
         }
