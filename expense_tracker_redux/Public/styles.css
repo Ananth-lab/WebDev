@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+body {
+    background-color: rgba(251, 163, 0, 0.597);
+}
+
 .header{
     text-align: center;
     font-weight: bold;
@@ -14,7 +18,7 @@ form{
     border: solid 0.2rem black;
     text-align: center;
     margin: auto;
-    background-color: aqua;
+    background-image: url("https://images.unsplash.com/photo-1634733988138-bf2c3a2a13fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXhwZW5zZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
 }
 input,label,slect{
     height: 1.5rem;

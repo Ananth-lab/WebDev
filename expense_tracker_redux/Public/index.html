@@ -11,11 +11,11 @@
 
 <body>
     <header class="header"> Expense Tracker</header>
-    <form action="#">
+    <form action="submit">
         <label for="amount"> Choose expense amount</label>
-        <input type="number" id="amount" />
+        <input type="number" id="amount" name = "name">
         <label for="description">Choose description</label>
-        <input type="text" id="description">
+        <input type="text" id="description" name = "description">
         <label for="category">Choose category</label>
         <select name="category" id="category">
             <option value="movie">Movie</option>
@@ -23,7 +23,7 @@
             <option value="games">Games</option>
             <option value="food">Food</option>
         </select>
-        <input type="button" id="submit" value = "Submit">
+        <button type = "submit" id = "submit">Submit</button>
         <ul class="list-items">
         </ul>
     </form>
