@@ -16,25 +16,34 @@ body {
 form{
     width: 50%;
     border: solid 0.2rem black;
+    border-radius: 10px;;
     text-align: center;
     margin: auto;
     background-image: url("https://images.unsplash.com/photo-1634733988138-bf2c3a2a13fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXhwZW5zZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
 }
-input,label,slect{
-    height: 1.5rem;
+input,label,select{
+    width:50%;
+    height: 2rem;
     display: block;
-    margin:1rem auto;  
+    margin:.5rem auto;  
 }
-
 select{
-    width: 20%;
-    margin-bottom: 1rem;
+    width: 50%;
 }
 li{
     list-style-type: none;
-    padding-bottom: 1rem;;
+    padding-bottom: 1rem;
+    text-align: center;
 }
-button{
+#submit{
+    width:25%;
     padding:.3rem;
     margin:.5rem;
+    border-radius: 5px;;
+}
+button {
+    width:15%;
+    padding:.3rem;
+    margin:.5rem;
+    border-radius: 5px;;
 }
