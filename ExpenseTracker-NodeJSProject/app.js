@@ -6,6 +6,8 @@ const bodyParser = require("body-parser")
 
 const routes = require("./routes/routes");
 
+const sequelize = require("./utils/database")
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -14,5 +16,7 @@ app.use(cors());
 
 app.use("/user", routes);
 
-
-app.listen(3000);
+sequelize.sync()
+.then(() => {
+   app.listen(3000);
+})

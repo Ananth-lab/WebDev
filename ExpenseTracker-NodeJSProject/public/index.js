@@ -11,4 +11,11 @@ subBtn.addEventListener("click", (e) => {
         password: password
     }
     axios.post("http://localhost:3000/user/signUp", details)
+        .then(() => {
+            console.log("User has logged in")
+        })
+        .catch(error => {
+            const errors = document.querySelector("#error");
+            errors.innerHTML = `${error.message}`;
+        })
 })
