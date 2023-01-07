@@ -1,21 +1,19 @@
-const subBtn = document.querySelector("#submit-btn");
+const subBtn = document.querySelector("#login-btn");
 
 subBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    const uname = document.querySelector("#uname").value;
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     const details = {
-        username: uname,
         email: email,
         password: password
     }
-    axios.post("http://localhost:3000/user/signUp", details)
+    axios.post("http://localhost:3000/user/login", details)
         .then(() => {
-            console.log("User has logged in")
+            alert("User has logged in")
         })
         .catch(error => {
             const errors = document.querySelector("#error");
-            errors.innerHTML = `${error.message}`;
+            errors.innerHTML = `${error.response.data.error}`;
         })
 })
