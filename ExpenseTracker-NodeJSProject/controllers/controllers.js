@@ -20,20 +20,20 @@ exports.logInController = async (req, res, next) => {
         if(!user[0]){
             const useremail = await User.findAll({where : {email : req.body.email}});
             if(!useremail[0]){
-                throw new Error("Username and Password does not match")
+                return res.status(404).json({error : "User Not Found"});
             }
             else{
-                throw new Error("Password is Invalid")
+                return res.status(401).json({error : "User is Not authorized"})
             }
         }
         if(user[0]){
             return res.status(200).json({user : user[0]});
         }
         else {
-            throw new Error('User not found');
+            return res.status(404).json({error : "User Not Found"});
         }
     }
     catch(error) {
-        res.status(505).json({error : error.message})
+        res.status(500).json({error : error.message})
     }
 }

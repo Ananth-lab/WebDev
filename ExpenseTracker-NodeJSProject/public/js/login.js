@@ -10,7 +10,7 @@ subBtn.addEventListener("click", (e) => {
     }
     axios.post("http://localhost:3000/user/login", details)
         .then(() => {
-            alert("User has logged in")
+            alert("User login sucessful")
         })
         .catch(error => {
             const errors = document.querySelector("#error");
