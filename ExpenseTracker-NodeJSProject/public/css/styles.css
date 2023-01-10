@@ -1,3 +1,38 @@
-#error{
+#error {
     color: red;
+    background-color: white;
+    width : 50%;
+    margin : auto;
+    margin-bottom: 5px;
+}
+
+body {
+    background-color: rgba(243, 6, 6, 0.966);
+}
+
+form {
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    background-image: url("https://images.unsplash.com/photo-1527769929977-c341ee9f2033?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZ2lufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+    border: solid 5px rgb(0, 102, 255);
+    border-radius: 12px;
+}
+
+label,
+input {
+    display: block;
+    margin: 8px auto;
+}
+
+button {
+    border-radius: 4px;
+    display: block;
+    margin: 10px auto;
+}
+
+a{
+    list-style: none;
+    color: white;
+    margin : 2px;
 }
