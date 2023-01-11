@@ -19,6 +19,6 @@ subBtn.addEventListener("click", (e) => {
         })
         .catch(error => {
             const errors = document.querySelector("#error");
-            errors.innerHTML = `${error.message}`;
+            errors.innerHTML = `${error.response.data.error}`;
         })
 })
