@@ -5,6 +5,9 @@ subBtn.addEventListener("click", (e) => {
     const uname = document.querySelector("#uname").value;
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
+    if(email == "" || password == "" || uname == ""){
+        return alert("Please enter the values")
+    }
     const details = {
         username: uname,
         email: email,
@@ -12,7 +15,7 @@ subBtn.addEventListener("click", (e) => {
     }
     axios.post("http://localhost:3000/user/signUp", details)
         .then(() => {
-            console.log("signin successful")
+            alert("signin successful. PLease login")
         })
         .catch(error => {
             const errors = document.querySelector("#error");
