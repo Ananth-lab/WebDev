@@ -31,13 +31,14 @@ exports.logInController = async (req, res, next) => {
         if (user.length > 0) {
             bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                 if (result == true) {
-                    res.status(201).json({ message: "User login successful" })
+                    res.status(201).json({ message: "User login successful" });
                 }
                 else {
                     res.status(401).json({ error: "User is not authorized" })
                 }
             })
         }
+        
         else {
             res.status(404).json({ error: "User not found" })
         }

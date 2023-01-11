@@ -15,7 +15,8 @@ subBtn.addEventListener("click", (e) => {
     }
     axios.post("http://localhost:3000/user/signUp", details)
         .then(() => {
-            alert("signin successful. PLease login")
+            alert("signin successful. Please login")
+            window.location.href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/login.html";
         })
         .catch(error => {
             const errors = document.querySelector("#error");
