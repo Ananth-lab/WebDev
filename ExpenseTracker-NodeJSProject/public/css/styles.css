@@ -1,38 +1,90 @@
 #error {
     color: red;
-    background-color: white;
-    width : 50%;
-    margin : auto;
-    margin-bottom: 5px;
+    width: 50%;
+    margin: auto;
+    padding: auto;
+    text-align: center;
 }
 
 body {
-    background-color: rgba(243, 6, 6, 0.33);
+	font-family: 'Montserrat', sans-serif;
+	color: #1f2933;
+	background-size: cover;
+}
+h1 {
+	text-align: center;
+	margin: 0.5rem auto;
+	font-weight: 800;
+	font-size: 40px;
+	color: #ffffff;
+	padding-bottom: 1rem;
 }
 
 form {
-    width: 50%;
-    text-align: center;
-    margin: auto;
-    background-image: url("https://images.unsplash.com/photo-1527769929977-c341ee9f2033?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZ2lufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
-    border: solid 5px rgb(0, 102, 255);
-    border-radius: 12px;
+	max-width :500px;
+	margin : 2rem auto;
+	padding: 1rem;
+	border-radius: 1rem;
+	background-image :linear-gradient(rgb(14, 196, 252), pink);
+	background-size: cover;
+	box-shadow : 1rem -1rem 5rem rgb(39, 224, 248) ;
 }
+
 
 label,
 input {
     display: block;
+    width: 30%;
     margin: 8px auto;
 }
 
 button {
-    border-radius: 4px;
-    display: block;
-    margin: 10px auto;
+	font-size: 16px;
+	display: block;
+	width: 30%;
+	margin:  10px auto;
+	padding: 6px 6px;
+	border-radius: 10px;
+	color:  #ffffff;
+	background-image: linear-gradient(rgb(192, 192, 192),rgba(0, 0, 255, 0.866));
+	border: 4px solid #3b82f6;
+	cursor: pointer;
+	text-align: center;
+	transition: all 250ms;
 }
 
-a{
+a {
     list-style: none;
-    color: white;
-    margin : 2px;
+    color: rgb(255, 255, 255);
+}
+
+select {
+    margin: auto;
+    width : 30%;
+    display: block;
+    height: 1.5rem;;
+}
+
+
+.footer{
+	margin : auto;
+	max-width : 500px;
+	background-image :linear-gradient(rgb(14, 196, 252), pink);
+	text-align: center;
+	box-shadow : -1rem 1rem 5rem rgb(39, 224, 248) ;
+	border-radius: 1rem;
+}
+.footer-links{
+	padding:1%;
+	padding: 2rem 0;
+}
+li{
+	display:inline;
+	padding :1rem;
+	
+}
+img{
+	width : 3rem;
+	height : 3rem;
+
 }
