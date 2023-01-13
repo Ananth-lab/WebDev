@@ -30,7 +30,11 @@ form {
 	box-shadow : 1rem -1rem 5rem rgb(39, 224, 248) ;
 }
 
-
+#switch{
+	display: block;
+	color:blue;
+	text-align: center;
+}
 label,
 input {
     display: block;
@@ -38,7 +42,7 @@ input {
     margin: 8px auto;
 }
 
-button {
+.sub-button {
 	font-size: 16px;
 	display: block;
 	width: 30%;
@@ -46,8 +50,8 @@ button {
 	padding: 6px 6px;
 	border-radius: 10px;
 	color:  #ffffff;
-	background-image: linear-gradient(rgb(192, 192, 192),rgba(0, 0, 255, 0.866));
-	border: 4px solid #3b82f6;
+	background-color: rgb(17, 0, 255);
+	border: 2px solid #3b82f6;
 	cursor: pointer;
 	text-align: center;
 	transition: all 250ms;
@@ -87,4 +91,21 @@ img{
 	width : 3rem;
 	height : 3rem;
 
+}
+.expense-list{
+	background-color: #fff;
+	display: block;
+	text-align: left;
+	margin: 8px;
+	box-shadow : -1rem 1rem 5rem rgb(39, 224, 248) ;
+	border-radius: 10px;
+}
+
+.delete-btn{
+	float: right;
+	color:  #ffffff;
+	background-color: red;
+	cursor: pointer;
+	text-align: center;
+	transition: all 250ms;
 }

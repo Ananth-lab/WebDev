@@ -1,29 +1,6 @@
 const User = require("../models/user");
 
 const bcrypt = require("bcrypt");
-const e = require("cors");
-
-exports.SignUpController = async (req, res, next) => {
-    try {
-        const cycles = 10;
-        bcrypt.hash(req.body.password, cycles, async (err, hash) => {
-            try {
-                const user = await User.create({
-                    username: req.body.username,
-                    email: req.body.email,
-                    password: hash
-                })
-                res.status(200).json({ newuser: user });
-            }
-            catch (error) {
-                res.status(504).json({error : error.name})
-            }
-        })
-    }
-    catch (error) {
-        res.status(504).json({ error: error })
-    }
-}
 
 exports.logInController = async (req, res, next) => {
     try {
@@ -47,4 +24,3 @@ exports.logInController = async (req, res, next) => {
         res.status(500).json({ error: error.message })
     }
 }
-
