@@ -10,6 +10,6 @@ routes.post("/addExpense",userAuthentication.authenticate,expenseRouters.addExpe
 
 routes.get("/getExpense", userAuthentication.authenticate ,expenseRouters.getExpense );
 
-routes.delete("/deleteExpense/:id",expenseRouters.deleteExpense );
+routes.delete("/deleteExpense/:id",userAuthentication.authenticate, expenseRouters.deleteExpense );
 
 module.exports = routes;

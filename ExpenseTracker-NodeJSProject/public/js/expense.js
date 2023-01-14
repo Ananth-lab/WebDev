@@ -31,7 +31,7 @@ function expenseDisplay(expense){
 }
 
 function deleteExpense(id, dltBtn){
-    axios.delete(`http://localhost:3000/expense/deleteExpense/${id}`)
+    axios.delete(`http://localhost:3000/expense/deleteExpense/${id}`, {headers : {"authorization" : token}})
     .then(() => {
         const element = dltBtn.parentElement;
         element.remove();

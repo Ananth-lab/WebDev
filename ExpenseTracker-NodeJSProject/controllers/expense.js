@@ -29,7 +29,7 @@ exports.getExpense = async (req, res, next) => {
 
 exports.deleteExpense = async (req, res, next) => {
     try{
-        const expense = await Expense.findByPk(req.params.id);
+        const expense = await Expense.findOne({where : {id : req.params.id, userId : req.user.id}});
         if(expense){
             expense.destroy();
             return res.status(201).json({message : "expense removed"})
