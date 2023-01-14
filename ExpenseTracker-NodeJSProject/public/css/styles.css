@@ -38,7 +38,7 @@ form {
 label,
 input {
     display: block;
-    width: 30%;
+    width: 50%;
     margin: 8px auto;
 }
 
@@ -46,7 +46,7 @@ input {
 	font-size: 16px;
 	display: block;
 	width: 30%;
-	margin:  10px auto;
+	margin:  20px auto;
 	padding: 6px 6px;
 	border-radius: 10px;
 	color:  #ffffff;
@@ -64,7 +64,7 @@ a {
 
 select {
     margin: auto;
-    width : 30%;
+    width : 50%;
     display: block;
     height: 1.5rem;;
 }

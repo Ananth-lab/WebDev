@@ -2,7 +2,6 @@ const subBtn = document.querySelector("#login-btn");
 
 subBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("hi")
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     if(email == "" || password == ""){
@@ -14,11 +13,13 @@ subBtn.addEventListener("click", (e) => {
     }
     axios.post("http://localhost:3000/user/login", details)
         .then((res) => {
-           window.location.href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/expense.html";
+            alert(res.data.message);
+            localStorage.setItem("token", res.data.token)
+            window.location.href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/expense.html";
+           
         })
         .catch(error => {
             const errors = document.querySelector("#error");
-            console.log(error)
             errors.innerHTML = `${error.response.data.error}`;
         })
 })

@@ -1,7 +1,9 @@
 const subBtn = document.querySelector("#submit-btn");
+const token = localStorage.getItem("token");
 
-document.addEventListener("DOMContentLoaded", () => {
-    axios.get("http://localhost:3000/expense/getExpense")
+window.addEventListener("DOMContentLoaded", () => {
+
+    axios.get("http://localhost:3000/expense/getExpense" ,{headers : {"authorization" : token}})
         .then(res => {
             for (let i = 0; i < res.data.expenseList.length; i++) {
                 expenseDisplay(res.data.expenseList[i]);
@@ -49,7 +51,7 @@ subBtn.addEventListener("click", (e) => {
         category: category
     };
 
-    axios.post("http://localhost:3000/expense/addExpense", expense)
+    axios.post("http://localhost:3000/expense/addExpense", expense, {headers : {"authorization" : token}})
         .then(res => {
             document.querySelector("#amount").value = "";
             document.querySelector("#description").value = "";

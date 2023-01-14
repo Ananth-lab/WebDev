@@ -5,7 +5,8 @@ exports.addExpense = async (req, res, next) => {
         const expense = await Expense.create({
             amount : req.body.amount,
             description : req.body.description,
-            category : req.body.category
+            category : req.body.category,
+            userId : req.user.id
         });
         res.status(201).json({expense : expense})
     }
@@ -17,8 +18,8 @@ exports.addExpense = async (req, res, next) => {
 
 exports.getExpense = async (req, res, next) => {
     try{
-        const expenses = await Expense.findAll();
-        res.status(201).json({expenseList : expenses})
+        const expenses = await Expense.findAll({where:{userId : req.user.id}}); // req.user.getExpense().then().catch()
+        res.status(201).json({expenseList : expenses, success : true})
     }
     catch(error){
         console.log(error)
