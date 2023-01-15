@@ -10,7 +10,8 @@ exports.SignUpController = async (req, res, next) => {
                 const user = await User.create({
                     username: req.body.username,
                     email: req.body.email,
-                    password: hash
+                    password: hash,
+                    ispremiumuser : false
                 })
                 res.status(200).json({ newuser: user });
             }

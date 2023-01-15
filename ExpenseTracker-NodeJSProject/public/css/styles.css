@@ -42,7 +42,7 @@ input {
     margin: 8px auto;
 }
 
-.sub-button {
+.sub-button, .premium-button {
 	font-size: 16px;
 	display: block;
 	width: 30%;

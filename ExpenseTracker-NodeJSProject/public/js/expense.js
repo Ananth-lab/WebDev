@@ -1,5 +1,6 @@
 const subBtn = document.querySelector("#submit-btn");
 const token = localStorage.getItem("token");
+const premiumBtn = document.querySelector("#premium-btn")
 
 window.addEventListener("DOMContentLoaded", () => {
 
@@ -60,4 +61,28 @@ subBtn.addEventListener("click", (e) => {
             expenseDisplay(expense)
         })
         .catch(err => console.log(err))
+})
+
+premiumBtn.addEventListener("click", async (e) => {
+    const response = await axios.get("http://localhost:3000/premium/purchase-premium", { headers : {"authorization" : token}});
+    var options = {
+        "key" : response.data.key_id,
+        "order_id" : response.data.order.id,
+        "handler" : async function(response){
+            await axios.post("http://localhost:3000/premium/update-transaction-status", {
+                order_id : options.order_id, payment_id : response.razorpay_payment_id }, {headers : {"authorization":token}})
+                alert("You are now a premium user")
+            }
+        }
+        const rzrp1 = new Razorpay(options);
+        rzrp1.open();
+        e.preventDefault();
+        rzrp1.on("payment.failed",  () => {
+            axios.post("http://localhost:3000/premium/update-transaction-status",{order_id : response.data.order.id, status : "FAILURE"}, {headers : {"authorization" : token}})
+            .then(res => {
+                console.log(res)
+                alert(res.data.message)
+            })
+            .catch(err => console.log(err))
+        })
 })
