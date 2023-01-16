@@ -78,11 +78,12 @@ premiumBtn.addEventListener("click", async (e) => {
         rzrp1.open();
         e.preventDefault();
         rzrp1.on("payment.failed",  () => {
-            axios.post("http://localhost:3000/premium/update-transaction-status",{order_id : response.data.order.id, status : "FAILURE"}, {headers : {"authorization" : token}})
-            .then(res => {
-                console.log(res)
-                alert(res.data.message)
+            axios.post("http://localhost:3000/premium/update-transaction-status",{order_id : response.data.order.id}, {headers : {"authorization" : token}})
+            .then(result => {
+               alert(result.response.data)
             })
-            .catch(err => console.log(err))
+            .catch(err =>{
+                alert("something went wrong")
+            })
         })
 })

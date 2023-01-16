@@ -13,7 +13,6 @@ exports.getPremium = async (req, res, next) => {
             if(error){
                 throw new Error(JSON.stringify(error))
             }
-            console.log("I have an order", order)
             req.user.createOrder({orderId : order.id, status : "PENDING" })
             .then(() => {
                 return res.status(201).json({order,key_id : rzr.key_id})
@@ -27,7 +26,7 @@ exports.getPremium = async (req, res, next) => {
 
 exports.updateStatus = async (req, res, next) => {
     try {
-        if(req.body.status){
+        if(!req.body.payment_id){
             const order = await Order.findOne({where : {orderId : req.body.order_id}});
             await order.update({status : "FAILURE"});
             return res.status(501).json({success : false, message : "Transaction failed"}) 

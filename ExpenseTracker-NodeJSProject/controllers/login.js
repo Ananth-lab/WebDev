@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 function generateAccessToken(id){
-    return jwt.sign({userid : id}, "urbf67q34bnasdbj4373qniasdjnv473dkf584")
+    return jwt.sign({userid : id}, process.env.AUTH_SECRET_KEY)
 }
 exports.logInController = async (req, res, next) => {
     try {
