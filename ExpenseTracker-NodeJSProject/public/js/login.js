@@ -14,7 +14,8 @@ subBtn.addEventListener("click", (e) => {
     axios.post("http://localhost:3000/user/login", details)
         .then((res) => {
             alert(res.data.message);
-            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("premiumuser", res.data.ispremiumuser)
             window.location.href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/expense.html";
            
         })

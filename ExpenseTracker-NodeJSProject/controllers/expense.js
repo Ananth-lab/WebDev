@@ -19,7 +19,7 @@ exports.addExpense = async (req, res, next) => {
 exports.getExpense = async (req, res, next) => {
     try{
         const expenses = await Expense.findAll({where:{userId : req.user.id}}); // req.user.getExpense().then().catch()
-        res.status(201).json({expenseList : expenses, success : true})
+        res.status(201).json({expenseList : expenses, success : true, ispremiumuser : req.user.ispremiumuser})
     }
     catch(error){
         console.log(error)

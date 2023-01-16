@@ -4,13 +4,15 @@ const cors = require("cors");
 
 const devenv = require('dotenv');
 
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
 
 const loginRoutes = require("./routes/login-signup");
 
 const expenseRoutes = require("./routes/expense");
 
-const purchaseRoutes = require("./routes/purchase")
+const purchaseRoutes = require("./routes/purchase");
+
+const premiumRoutes = require("./routes/premium");
 
 const sequelize = require("./utils/database");
 
@@ -32,7 +34,9 @@ app.use("/user", loginRoutes);
 
 app.use("/expense", expenseRoutes);
 
-app.use("/premium", purchaseRoutes);
+app.use("/get-premium", purchaseRoutes);
+
+app.use("/premium", premiumRoutes);
 
 User.hasMany(Expense, {
   foreignKey: 'userId',
@@ -46,16 +50,16 @@ Expense.belongsTo(User, {
 
 
 User.hasMany(Order, {
-  foreignKey : "userId"
-})
+  foreignKey: "userId"
+});
 
 Order.belongsTo(User, {
-  foreignKey : "userId"
-})
+  foreignKey: "userId"
+});
 
 
 
 sequelize.sync()
   .then(() => {
     app.listen(3000);
-  })
+  });

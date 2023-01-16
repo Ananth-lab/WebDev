@@ -20,7 +20,7 @@ h1 {
 	padding-bottom: 1rem;
 }
 
-form {
+form,.leader-board {
 	max-width :500px;
 	margin : 2rem auto;
 	padding: 1rem;
@@ -42,7 +42,7 @@ input {
     margin: 8px auto;
 }
 
-.sub-button, .premium-button {
+.sub-button, .premium-button,.leader-board-btn {
 	font-size: 16px;
 	display: block;
 	width: 30%;
@@ -92,7 +92,7 @@ img{
 	height : 3rem;
 
 }
-.expense-list{
+.expense-list, .leader-board-list{
 	background-color: #fff;
 	display: block;
 	text-align: left;
@@ -108,4 +108,12 @@ img{
 	cursor: pointer;
 	text-align: center;
 	transition: all 250ms;
+}
+
+#premium {
+	text-align: right;
+}
+
+.leader-board{
+	display: none;
 }
