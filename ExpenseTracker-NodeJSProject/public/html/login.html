@@ -10,13 +10,14 @@
 </head>
 
 <body>
-    <form action="submit" method = "POST">
+    <form method = "POST">
         <h1>Login</h1>
         <label for = "email">Enter your Email</label>
         <input type = "text" id = "email" name = "email" required="required" >
         <label for = "password">Enter your Password</label>
         <input type = "password" id = "password" name = "password" required="required" >
-        <button type = "submit" id = "login-btn" class="sub-button">Login</button>
+        <button id = "login-btn" class="sub-button">Login</button>
+        <a href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/forgot-password.html" id = "switch" class="forgot-password-a">Forgot password</a>
         <p id = "error"></p>
         <a href="/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/signup.html" id = "switch">New User - Sign Up</a>
     </form>

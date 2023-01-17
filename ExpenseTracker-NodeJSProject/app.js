@@ -32,6 +32,8 @@ app.use(cors());
 
 app.use("/user", loginRoutes);
 
+app.use("/password", loginRoutes);
+
 app.use("/expense", expenseRoutes);
 
 app.use("/get-premium", purchaseRoutes);

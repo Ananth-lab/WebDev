@@ -6,7 +6,6 @@ const User = require("../models/user");
 
 exports.getLeaderBoard = async (req, res, next) => {
     try{
-        console.log("Hi")
         const leaderBoard = await User.findAll({
             attributes : ["id", "username", [sequelize.fn("sum", sequelize.col("expenses.amount")), "total_amount"]],
             include : [

@@ -115,7 +115,7 @@ function showLeaderBoard() {
                 const li = document.createElement("li");
                 li.className = "leader-board-list"
                 li.appendChild(document.createTextNode(` Name : ${res.data[i].username} ,`));
-                li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}  `));
+                li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}`));
                 ul.append(li)
             }
         })

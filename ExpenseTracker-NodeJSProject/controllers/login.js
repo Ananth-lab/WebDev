@@ -31,3 +31,12 @@ exports.logInController = async (req, res, next) => {
     }
 }
 
+exports.forgotPassword = async (req, res, next) => {
+    try {
+        console.log("Give us few seconds we are woking on it to reset the password")
+    }
+    catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+

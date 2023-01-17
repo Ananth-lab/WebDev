@@ -34,6 +34,7 @@ form,.leader-board {
 	display: block;
 	color:blue;
 	text-align: center;
+	margin :1rem auto;
 }
 label,
 input {
@@ -42,7 +43,7 @@ input {
     margin: 8px auto;
 }
 
-.sub-button, .premium-button,.leader-board-btn {
+.sub-button, .premium-button,.leader-board-btn,.forgot-password-submit-btn {
 	font-size: 16px;
 	display: block;
 	width: 30%;

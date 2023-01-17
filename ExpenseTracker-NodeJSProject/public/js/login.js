@@ -1,5 +1,6 @@
 const subBtn = document.querySelector("#login-btn");
 
+
 subBtn.addEventListener("click", (e) => {
     e.preventDefault();
     const email = document.querySelector("#email").value;
@@ -24,3 +25,4 @@ subBtn.addEventListener("click", (e) => {
             errors.innerHTML = `${error.response.data.error}`;
         })
 })
+
