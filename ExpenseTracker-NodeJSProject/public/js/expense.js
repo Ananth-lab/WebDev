@@ -110,12 +110,12 @@ leaderBoardBtn.addEventListener("click", (e) => {
 function showLeaderBoard() {
     axios.get("http://localhost:3000/premium/show-leaderboard", { headers: { "authorization": token } })
         .then(res => {
-            for (let i = 0; i < res.data.leaderList.length; i++) {
+            for (let i = 0; i < res.data.length; i++) {
                 const ul = document.querySelector(".leader-board-ul");
                 const li = document.createElement("li");
                 li.className = "leader-board-list"
-                li.appendChild(document.createTextNode(` Name : ${res.data.leaderList[i].name} --`));
-                li.appendChild(document.createTextNode(`Total Expense : ${res.data.leaderList[i].total_amount} `));
+                li.appendChild(document.createTextNode(` Name : ${res.data[i].username} ,`));
+                li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}  `));
                 ul.append(li)
             }
         })
