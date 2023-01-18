@@ -14,6 +14,8 @@ const purchaseRoutes = require("./routes/purchase");
 
 const premiumRoutes = require("./routes/premium");
 
+const forgotPasswordRoutes = require("./routes/forgotpassword");
+
 const sequelize = require("./utils/database");
 
 const User = require("./models/user");
@@ -21,6 +23,8 @@ const User = require("./models/user");
 const Expense = require("./models/expense");
 
 const Order = require("./models/order");
+
+const Forgotpassword = require("./models/forgotpassword")
 
 const app = express();
 
@@ -32,7 +36,7 @@ app.use(cors());
 
 app.use("/user", loginRoutes);
 
-app.use("/password", loginRoutes);
+app.use("/password", forgotPasswordRoutes);
 
 app.use("/expense", expenseRoutes);
 
@@ -59,7 +63,11 @@ Order.belongsTo(User, {
   foreignKey: "userId"
 });
 
+User.hasMany(Forgotpassword, {
+  onDelete: 'CASCADE',
+});
 
+Forgotpassword.belongsTo(User);
 
 sequelize.sync()
   .then(() => {

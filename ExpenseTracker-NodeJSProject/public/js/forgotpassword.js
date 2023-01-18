@@ -4,7 +4,10 @@ const forgotPasswordSubmit = document.querySelector("#forgot-password-submit-btn
 forgotPasswordSubmit.addEventListener("click", (e) => {
     e.preventDefault();
     const email = document.querySelector("#email").value;
-    axios.post("http://localhost:3000/password/forgotpassword", email)
+    const details = {
+        email : email
+    }
+    axios.post("http://localhost:3000/password/forgotpassword", details)
     .then(res => {
         console.log(res)
     })

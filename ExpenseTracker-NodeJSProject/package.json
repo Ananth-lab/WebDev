@@ -10,6 +10,7 @@
   "author": "Ananth",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
@@ -20,6 +21,7 @@
     "node": "^19.3.0",
     "nodemon": "^2.0.20",
     "razorpay": "^2.8.4",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "uuid": "^9.0.0"
   }
 }
