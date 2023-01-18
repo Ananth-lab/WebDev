@@ -17,7 +17,7 @@ subBtn.addEventListener("click", (e) => {
             alert(res.data.message);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("premiumuser", res.data.ispremiumuser)
-            window.location.href = "/home/anantharaja/Desktop/WebDev/ExpenseTracker-NodeJSProject/public/html/expense.html";
+            window.location.href = "./expense.html";
            
         })
         .catch(error => {

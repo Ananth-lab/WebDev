@@ -5,6 +5,7 @@ const premium = document.querySelector("#premium");
 const leaderBoardDiv = document.querySelector(".leader-board");
 const leaderBoardBtn = document.querySelector(".leader-board-btn");
 const leaderBoardUl = document.querySelector(".leader-board-ul");
+const downloadReport = document.querySelector(".report-download");
 
 window.addEventListener("DOMContentLoaded", () => {
     axios.get("http://localhost:3000/expense/getExpense", { headers: { "authorization": token } })
@@ -101,25 +102,54 @@ premiumBtn.addEventListener("click", async (e) => {
     })
 })
 
+let leaderboardDisplayed = false;
+let leaderboardElements = [];
+
+axios.get("http://localhost:3000/premium/show-leaderboard", { headers: { "authorization": token } })
+    .then(res => {
+        for (let i = 0; i < res.data.length; i++) {
+            const li = document.createElement("li");
+            li.className = "leader-board-list"
+            li.appendChild(document.createTextNode(` Name : ${res.data[i].username} ,`));
+            li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}`));
+            leaderboardElements.push(li);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
 
 leaderBoardBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    showLeaderBoard()
-})
+    if (leaderboardDisplayed) {
+        leaderBoardBtn.innerHTML = 'Show Leaderboard';
+        document.querySelector('.leader-board-ul').style.display = 'none';
+        leaderboardDisplayed = false;
+    } else {
+        leaderBoardBtn.innerHTML = 'Hide Leaderboard';
+        const ul = document.querySelector(".leader-board-ul");
+        ul.style.display = 'block';
+        leaderboardElements.forEach(element => {
+            ul.append(element)
+        });
+        leaderboardDisplayed = true;
+    }
+});
 
-function showLeaderBoard() {
-    axios.get("http://localhost:3000/premium/show-leaderboard", { headers: { "authorization": token } })
-        .then(res => {
-            for (let i = 0; i < res.data.length; i++) {
-                const ul = document.querySelector(".leader-board-ul");
-                const li = document.createElement("li");
-                li.className = "leader-board-list"
-                li.appendChild(document.createTextNode(` Name : ${res.data[i].username} ,`));
-                li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}`));
-                ul.append(li)
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        })
-}
+
+downloadReport.addEventListener("click", (e) => {
+    e.preventDefault();
+    axios.get("http://localhost:3000/user/download-report")
+    .then((res) => {
+        if(res.status == 201){
+            var a = document.createElement("a");
+            a.href = res.data.fileUrl;
+            a.download = 'myexpenses.csv';
+            a.click();
+        }
+        else{
+            throw new Error({message : res.data.message})
+        }
+    })
+    .catch(err => console.log(err))
+})

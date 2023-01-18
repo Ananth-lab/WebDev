@@ -57,6 +57,7 @@ exports.resetPassword = async (req, res, next) => {
                     <input name="newpassword" type="password" required></input>
                     <button>reset password</button>
                 </form>
+                <script src="../public/css/styles"></script>
             </html>`);
                     res.end()
                 }
