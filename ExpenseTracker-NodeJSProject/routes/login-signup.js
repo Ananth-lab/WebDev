@@ -6,7 +6,7 @@ const routes = express.Router();
 
 const logInController = require("../controllers/login");
 
-const premiumController = require("../controllers/premium");
+const expenseController = require("../controllers/expense");
 
 const signUpController = require("../controllers/signin");
 
@@ -14,6 +14,6 @@ routes.use("/signup", signUpController.SignUpController);
 
 routes.use("/login", logInController.logInController);
 
-routes.use("/download-report",userAuthentication.authenticate, premiumController.downloadReport);
+routes.get("/download-report", userAuthentication.authenticate, expenseController.downloadReport);
 
 module.exports = routes;

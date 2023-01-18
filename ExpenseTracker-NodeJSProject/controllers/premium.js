@@ -25,11 +25,3 @@ exports.getLeaderBoard = async (req, res, next) => {
 }
 
 
-exports.downloadReport = async(req, res, next) => {
-    try{
-
-    }
-    catch(error){
-        console.log(error)
-    }
-}

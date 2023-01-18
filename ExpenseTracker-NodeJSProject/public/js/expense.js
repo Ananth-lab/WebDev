@@ -139,11 +139,11 @@ leaderBoardBtn.addEventListener("click", (e) => {
 
 downloadReport.addEventListener("click", (e) => {
     e.preventDefault();
-    axios.get("http://localhost:3000/user/download-report")
+    axios.get("http://localhost:3000/user/download-report", { headers: { "authorization": token } })
     .then((res) => {
         if(res.status == 201){
             var a = document.createElement("a");
-            a.href = res.data.fileUrl;
+            a.href = res.data.fileURL;
             a.download = 'myexpenses.csv';
             a.click();
         }

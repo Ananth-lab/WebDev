@@ -14,8 +14,7 @@ exports.authenticate = async (req,res,next) => {
          .catch(error =>  {throw new Error(error)})
     }
     catch(error){
-        console.log("error");
-        return res.status(401).json({success : false})
+        return res.status(401).json({success : false, message : "User is not authorized"})
     }
 }
 
