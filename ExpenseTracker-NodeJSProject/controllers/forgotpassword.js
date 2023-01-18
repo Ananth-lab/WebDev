@@ -22,20 +22,21 @@ exports.forgotPassword = async (req, res, next) => {
                     throw new Error(err);
                 })
             const msg = {
-                to: user.email, 
-                from: 'anantharajabk@gmail.com', 
+                to: user.email,
+                from: 'anantharajabk@gmail.com',
                 subject: 'Sending with SendGrid is Fun',
                 text: 'and easy to do anywhere, even with Node.js',
                 html: `<a href="http://localhost:3000/password/resetpassword/${id}">Reset password</a>`
             }
-            sgMail
-                .send(msg)
-                .then((response) => {
-                    return res.status(response[0].statusCode).json({ message: 'Link to reset password sent to your mail ', sucess: true })
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
+            // sgMail
+            //     .send(msg)
+            //     .then((response) => {
+            //         return res.status(response[0].statusCode).json({ message: 'Link to reset password sent to your mail ', success: true })
+            //     })
+            //     .catch((error) => {
+            //         console.error(error)
+            //     })
+            return res.status(200).json({ message: 'Link to reset password sent to your mail ', link: msg.html })
         }
     }
     catch (error) {
@@ -43,12 +44,58 @@ exports.forgotPassword = async (req, res, next) => {
     }
 }
 
-exports.resetPassword = async (req,res,next) => {
-    try{
-
+exports.resetPassword = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        Forgotpassword.findOne({ where: { id: id } })
+            .then(resetrequest => {
+                if (resetrequest) {
+                    resetrequest.update({ active: false })
+                    res.status(200).send(`<html>
+                    <form action="/password/updatepassword/${id}" method="get">
+                    <label for="newpassword">Enter New password</label>
+                    <input name="newpassword" type="password" required></input>
+                    <button>reset password</button>
+                </form>
+            </html>`);
+                    res.end()
+                }
+            })
     }
-    catch(error){
+    catch (error) {
         console.log(error)
+    }
+}
+
+
+exports.updatePassword = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const newPassword = req.query.newpassword;
+        Forgotpassword.findOne({ where: { id } })
+            .then(resetrequest => {
+                User.findOne({ where: { id: resetrequest.userId } })
+                    .then(user => {
+                        const saltRounds = 10;
+                        bcrypt.genSalt(saltRounds, function (error, salt) {
+                            if (error) {
+                                throw new Error(error)
+                            }
+                            bcrypt.hash(newPassword, salt, (err, hash) => {
+                                if (error) {
+                                    throw new Error(error)
+                                }
+                                user.update({ password: hash })
+                                    .then(() => {
+                                        res.status(201).json({ message: "Password updated succesfully" })
+                                    })
+                            })
+                        })
+                    })
+            })
+    }
+    catch (error) {
+        res.status(404).json({ message: "User not found" })
     }
 }
 
