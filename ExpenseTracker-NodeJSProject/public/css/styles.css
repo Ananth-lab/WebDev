@@ -43,7 +43,7 @@ input {
     margin: 8px auto;
 }
 
-.sub-button, .premium-button,.leader-board-btn,.forgot-password-submit-btn, .report-download {
+.sub-button, .premium-button,.leader-board-btn,.forgot-password-submit-btn, .report-download,.file-audit {
 	font-size: 16px;
 	display: block;
 	width: 30%;
@@ -93,7 +93,7 @@ img{
 	height : 3rem;
 
 }
-.expense-list, .leader-board-list{
+.expense-list, .leader-board-list, .file-audit-list{
 	background-color: #fff;
 	display: block;
 	text-align: left;

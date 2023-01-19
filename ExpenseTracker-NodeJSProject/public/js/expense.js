@@ -6,6 +6,7 @@ const leaderBoardDiv = document.querySelector(".leader-board");
 const leaderBoardBtn = document.querySelector(".leader-board-btn");
 const leaderBoardUl = document.querySelector(".leader-board-ul");
 const downloadReport = document.querySelector(".report-download");
+const fileAudit = document.querySelector(".file-audit");
 
 window.addEventListener("DOMContentLoaded", () => {
     axios.get("http://localhost:3000/expense/getExpense", { headers: { "authorization": token } })
@@ -141,7 +142,8 @@ downloadReport.addEventListener("click", (e) => {
     e.preventDefault();
     axios.get("http://localhost:3000/user/download-report", { headers: { "authorization": token } })
     .then((res) => {
-        if(res.status == 201){
+        console.log(res.status)
+        if(res.status == 200){
             var a = document.createElement("a");
             a.href = res.data.fileURL;
             a.download = 'myexpenses.csv';
@@ -153,3 +155,38 @@ downloadReport.addEventListener("click", (e) => {
     })
     .catch(err => console.log(err))
 })
+
+
+let fileauditdisplayed = false;
+let fileauditElements = [];
+
+axios.get("http://localhost:3000/premium/show-file-audit", { headers: { "authorization": token } })
+    .then(res => {
+        for (let i = 0; i < res.data.FileAudit.length; i++) {
+            const li = document.createElement("li");
+            li.className = "file-audit-list"
+            li.appendChild(document.createTextNode(` Date : ${res.data.FileAudit[i].createdAt} ,`));
+            li.appendChild(document.createTextNode(`FileURL : ${res.data.FileAudit[i].url}`));
+            fileauditElements.push(li);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+fileAudit.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (fileauditdisplayed) {
+        fileAudit.innerHTML = 'Show Downloads';
+        document.querySelector('.file-audit-ul').style.display = 'none';
+        fileauditdisplayed = false;
+    } else {
+        fileAudit.innerHTML = 'Hide Downloads';
+        const ul = document.querySelector(".file-audit-ul");
+        ul.style.display = 'block';
+        fileauditElements.forEach(element => {
+            ul.append(element)
+        });
+        fileauditdisplayed = true;
+    }
+});

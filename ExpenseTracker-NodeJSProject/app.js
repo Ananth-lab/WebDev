@@ -24,7 +24,9 @@ const Expense = require("./models/expense");
 
 const Order = require("./models/order");
 
-const Forgotpassword = require("./models/forgotpassword")
+const Forgotpassword = require("./models/forgotpassword");
+
+const FileAudit = require("./models/fileaudit");
 
 const app = express();
 
@@ -68,6 +70,13 @@ User.hasMany(Forgotpassword, {
 });
 
 Forgotpassword.belongsTo(User);
+
+User.hasMany(FileAudit, {
+  foreignKey : "userId",
+  onDelete : "CASCADE"
+});
+
+FileAudit.belongsTo(User);
 
 sequelize.sync()
   .then(() => {
