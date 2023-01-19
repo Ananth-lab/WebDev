@@ -1,5 +1,6 @@
 const subBtn = document.querySelector("#submit-btn");
 const token = localStorage.getItem("token");
+const expenseLists = document.querySelector(".expense-lists")
 const premiumBtn = document.querySelector("#premium-btn");
 const premium = document.querySelector("#premium");
 const leaderBoardDiv = document.querySelector(".leader-board");
@@ -7,26 +8,30 @@ const leaderBoardBtn = document.querySelector(".leader-board-btn");
 const leaderBoardUl = document.querySelector(".leader-board-ul");
 const downloadReport = document.querySelector(".report-download");
 const fileAudit = document.querySelector(".file-audit");
+const pagination = document.querySelector("#pagination");
 
-window.addEventListener("DOMContentLoaded", () => {
-    axios.get("http://localhost:3000/expense/getExpense", { headers: { "authorization": token } })
-        .then(res => {
-            if (res.data.ispremiumuser == true) {
-                premiumBtn.style.visibility = "hidden";
-                localStorage.setItem("premiumuser", res.data.ispremiumuser);
-                premium.append(document.createTextNode("PREMIUM"))
-                premiumBtn.style.visibility = "hidden";
-                leaderBoardDiv.style.display = "block"
-            }
-            for (let i = 0; i < res.data.expenseList.length; i++) {
-                expenseDisplay(res.data.expenseList[i]);
-            }
-        })
-        .catch(err => console.log(err))
+window.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const page = 1;
+        const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page}`, { headers: { "authorization": token } });
+        if (expenses.data.isPremium == true) {
+            premiumBtn.style.visibility = "hidden";
+            localStorage.setItem("premiumuser", expenses.data.isPremium);
+            premium.append(document.createTextNode("PREMIUM"))
+            leaderBoardDiv.style.display = "block"
+        }
+        for (let i = 0; i < expenses.data.expenses.length; i++) {
+            expenseDisplay(expenses.data.expenses[i]);
+        }
+        showPagination(expenses.data)
+    }
+    catch (error) {
+
+    }
 });
 
 function expenseDisplay(expense) {
-    const ul = document.querySelector("ul");
+    const ul = document.querySelector(".expense-lists");
     const li = document.createElement("li");
     li.className = "expense-list"
     li.appendChild(document.createTextNode(` ${expense.amount} --`));
@@ -112,7 +117,7 @@ axios.get("http://localhost:3000/premium/show-leaderboard", { headers: { "author
             const li = document.createElement("li");
             li.className = "leader-board-list"
             li.appendChild(document.createTextNode(` Name : ${res.data[i].username} ,`));
-            li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount|| 0}`));
+            li.appendChild(document.createTextNode(`Total Expense : ${res.data[i].total_amount || 0}`));
             leaderboardElements.push(li);
         }
     })
@@ -141,19 +146,19 @@ leaderBoardBtn.addEventListener("click", (e) => {
 downloadReport.addEventListener("click", (e) => {
     e.preventDefault();
     axios.get("http://localhost:3000/user/download-report", { headers: { "authorization": token } })
-    .then((res) => {
-        console.log(res.status)
-        if(res.status == 200){
-            var a = document.createElement("a");
-            a.href = res.data.fileURL;
-            a.download = 'myexpenses.csv';
-            a.click();
-        }
-        else{
-            throw new Error({message : res.data.message})
-        }
-    })
-    .catch(err => console.log(err))
+        .then((res) => {
+            console.log(res.status)
+            if (res.status == 200) {
+                var a = document.createElement("a");
+                a.href = res.data.fileURL;
+                a.download = 'myexpenses.csv';
+                a.click();
+            }
+            else {
+                throw new Error({ message: res.data.message })
+            }
+        })
+        .catch(err => console.log(err))
 })
 
 
@@ -190,3 +195,79 @@ fileAudit.addEventListener("click", (e) => {
         fileauditdisplayed = true;
     }
 });
+function showPagination({currentPage, hasNextPage, nextPage, hasPreviousPage, previousPage, lastPage}){
+    pagination.innerHTML = "";
+    if(currentPage != 1 && previousPage != 1){
+        const button1 = document.createElement("button");
+        button1.innerText = 1;
+        button1.className = "pagination-btn";
+        button1.addEventListener('click', (e) => {
+            e.preventDefault()
+            console.log(expenseLists)
+            expenseLists.innerHTML = "";
+            getAllExpenses(1);
+        })
+        const span = document.createElement("span");
+        span.innerText = "--------";
+        pagination.appendChild(button1);
+        pagination.appendChild(span)
+    }
+
+    if(hasPreviousPage){
+        const button2 = document.createElement("button");
+        button2.className = "pagination-btn";
+        button2.innerText = previousPage;
+        button2.addEventListener('click', (e) => {
+            e.preventDefault()
+            expenseLists.innerHTML = "";
+            getAllExpenses(previousPage);
+        });
+        pagination.appendChild(button2);
+    }
+
+    const button3 = document.createElement("button");
+    button3.className = "pagination-btn";
+    button3.innerHTML = `<h3>${currentPage}</h3>`;
+    button3.addEventListener("click", (e) => {
+        e.preventDefault()
+        expenseLists.innerHTML = "";
+        getAllExpenses(currentPage);
+    })
+    pagination.appendChild(button3);
+
+    if(hasNextPage){
+        const button4 = document.createElement("button");
+        button4.className = "pagination-btn";
+        button4.innerText = nextPage;
+        button4.addEventListener('click', (e) => {
+            e.preventDefault()
+            expenseLists.innerHTML = "";
+            getAllExpenses(nextPage);
+        });
+        pagination.appendChild(button4);
+    }
+
+    if(nextPage != lastPage && currentPage != lastPage){
+        const button5 = document.createElement("button");
+        button5.className = "pagination-btn";
+        button5.innerText = lastPage;
+        button5.addEventListener('click', (e) => {
+            e.preventDefault()
+            expenseLists.innerHTML = "";
+            getAllExpenses(lastPage);
+        });
+        const span = document.createElement("span");
+        span.innerText = "--------";
+        pagination.appendChild(span)
+        pagination.appendChild(button5);
+    }
+}
+
+
+async function getAllExpenses(page){
+    const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page}`, { headers: { "authorization": token } })
+        for(let i = 0; i < expenses.data.expenses.length; i++) {
+            expenseDisplay(expenses.data.expenses[i]);
+        }
+        showPagination(expenses.data)
+}

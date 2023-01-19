@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="submit" method="POST">
+    <form method="POST">
         <p id="premium"></p>
         <h1>Add expense</h1>
         <label for="amount">Please enter the amount</label>
@@ -26,10 +26,12 @@
             <option>Other</option>
         </select>
         <button type="submit" id="submit-btn" class="sub-button">Add Expense</button>
-        <ul>
+        <ul class="expense-lists">
 
         </ul>
+        <div id="pagination"></div>
     </form>
+   
     <button id="premium-btn" class="premium-button">Buy Premium</button>
     <div class="leader-board">
         <button class="leader-board-btn">Show Leaderboard</button>
@@ -39,7 +41,7 @@
         <button class = "report-download">Download report</button>
         <button class = "file-audit">Download History</button>
         <ul class="file-audit-ul">
-
+            
         </ul>
     </div>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
