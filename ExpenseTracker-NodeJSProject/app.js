@@ -4,6 +4,16 @@ const cors = require("cors");
 
 const devenv = require('dotenv');
 
+const helmet = require("helmet");
+
+const fs = require("fs");
+
+const path = require("path");
+
+//const compression = require("compression");
+
+const morgan = require("morgan");
+
 const bodyParser = require("body-parser");
 
 const loginRoutes = require("./routes/login-signup");
@@ -15,8 +25,6 @@ const purchaseRoutes = require("./routes/purchase");
 const premiumRoutes = require("./routes/premium");
 
 const forgotPasswordRoutes = require("./routes/forgotpassword");
-
-const sequelize = require("./utils/database");
 
 const User = require("./models/user");
 
@@ -30,11 +38,21 @@ const FileAudit = require("./models/fileaudit");
 
 const app = express();
 
-devenv.config();
-
 app.use(bodyParser.json());
 
 app.use(cors());
+
+app.use(helmet());
+
+//app.use(compression());
+
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {flags : "a"})
+
+app.use(morgan("combined", {stream : accessLogStream}));
+
+devenv.config();
+
+const sequelize = require("./utils/database");
 
 app.use("/user", loginRoutes);
 
@@ -80,5 +98,5 @@ FileAudit.belongsTo(User);
 
 sequelize.sync()
   .then(() => {
-    app.listen(3000);
+    app.listen(process.env.PORT || 3000)
   });

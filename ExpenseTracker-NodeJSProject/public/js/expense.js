@@ -109,8 +109,10 @@ premiumBtn.addEventListener("click", async (e) => {
                 order_id: options.order_id, payment_id: response.razorpay_payment_id
             }, { headers: { "authorization": token } })
             alert("You are now a premium user");
-            localStorage.setItem("token", result.data.token)
+            localStorage.setItem("token", result.data.token);
+            premiumBtn.style.display = "hidden";
             premium.append(document.createTextNode("PREMIUM"));
+
         }
     }
     const rzrp1 = new Razorpay(options);
