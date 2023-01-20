@@ -125,7 +125,11 @@ img{
 	text-align: right;
 }
 
-.leader-board{
+#premium-btn{
+	display: none;
+}
+
+.leader-board, .expenses-per-page-div{
 	display: none;
 }
 

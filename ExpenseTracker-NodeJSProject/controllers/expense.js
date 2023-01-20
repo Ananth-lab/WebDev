@@ -1,12 +1,8 @@
-const AWS = require("aws-sdk");
-
 const Expense = require("../models/expense");
 
 const S3Services = require("../services/s3");
 
 const FileAudit = require("../models/fileaudit");
-
-const User = require("../models/user");
 
 // const userServices = require("../services/user")
 

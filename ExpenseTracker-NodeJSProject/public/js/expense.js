@@ -10,7 +10,7 @@ const downloadReport = document.querySelector(".report-download");
 const fileAudit = document.querySelector(".file-audit");
 const pagination = document.querySelector("#pagination");
 const perPageBtn = document.querySelector(".set-expense-per-row");
-
+const paginationDiv = document.querySelector(".expenses-per-page-div");
 
 perPageBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -23,18 +23,23 @@ window.addEventListener("DOMContentLoaded", async () => {
     try {
         const page = 1;
         const perPageSelected = localStorage.getItem("perpage") || 2;
-        console.log(perPageSelected)
         const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page} &perpage=${perPageSelected}`, { headers: { "authorization": token } });
         if (expenses.data.isPremium == true) {
-            premiumBtn.style.visibility = "hidden";
             localStorage.setItem("premiumuser", expenses.data.isPremium);
             premium.append(document.createTextNode("PREMIUM"))
             leaderBoardDiv.style.display = "block"
         }
+        else{
+            premiumBtn.style.display = "block";
+        }
         for (let i = 0; i < expenses.data.expenses.length; i++) {
             expenseDisplay(expenses.data.expenses[i]);
         }
-        showPagination(expenses.data)
+        if(expenses.data.expenses.length > 1){
+            paginationDiv.style.display = "block";
+            showPagination(expenses.data)
+        }
+        
     }
     catch (error) {
         console.log(error)
@@ -106,7 +111,6 @@ premiumBtn.addEventListener("click", async (e) => {
             alert("You are now a premium user");
             localStorage.setItem("token", result.data.token)
             premium.append(document.createTextNode("PREMIUM"));
-            axios.post("")
         }
     }
     const rzrp1 = new Razorpay(options);
@@ -281,7 +285,8 @@ function showPagination({currentPage, hasNextPage, nextPage, hasPreviousPage, pr
 
 
 async function getAllExpenses(page){
-    const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page}`, { headers: { "authorization": token } })
+    const perPageSelected = localStorage.getItem("perpage") || 2;
+    const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page}&perpage=${perPageSelected}`, { headers: { "authorization": token } })
         for(let i = 0; i < expenses.data.expenses.length; i++) {
             expenseDisplay(expenses.data.expenses[i]);
         }
