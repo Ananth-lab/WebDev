@@ -9,11 +9,22 @@ const leaderBoardUl = document.querySelector(".leader-board-ul");
 const downloadReport = document.querySelector(".report-download");
 const fileAudit = document.querySelector(".file-audit");
 const pagination = document.querySelector("#pagination");
+const perPageBtn = document.querySelector(".set-expense-per-row");
+
+
+perPageBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const perPageSelected = document.querySelector("#expense-opt");
+    localStorage.setItem("perpage",perPageSelected.value);
+    location.reload();
+})
 
 window.addEventListener("DOMContentLoaded", async () => {
     try {
         const page = 1;
-        const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page}`, { headers: { "authorization": token } });
+        const perPageSelected = localStorage.getItem("perpage") || 2;
+        console.log(perPageSelected)
+        const expenses = await axios.get(`http://localhost:3000/expense/getExpense?page=${page} &perpage=${perPageSelected}`, { headers: { "authorization": token } });
         if (expenses.data.isPremium == true) {
             premiumBtn.style.visibility = "hidden";
             localStorage.setItem("premiumuser", expenses.data.isPremium);
@@ -26,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         showPagination(expenses.data)
     }
     catch (error) {
-
+        console.log(error)
     }
 });
 
@@ -170,8 +181,13 @@ axios.get("http://localhost:3000/premium/show-file-audit", { headers: { "authori
         for (let i = 0; i < res.data.FileAudit.length; i++) {
             const li = document.createElement("li");
             li.className = "file-audit-list"
-            li.appendChild(document.createTextNode(` Date : ${res.data.FileAudit[i].createdAt} ,`));
-            li.appendChild(document.createTextNode(`FileURL : ${res.data.FileAudit[i].url}`));
+            li.appendChild(document.createTextNode(` Date : ${res.data.FileAudit[i].createdAt} `));
+            const a = document.createElement("a");
+            a.className = "file-link"
+            a.href = res.data.FileAudit[i].url;
+            a.textContent = "FileURL";
+            // li.appendChild(document.createTextNode(`FileURL :<a> ${res.data.FileAudit[i].url}`));
+            li.appendChild(a)
             fileauditElements.push(li);
         }
     })

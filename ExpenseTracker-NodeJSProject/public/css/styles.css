@@ -36,6 +36,13 @@ form,.leader-board {
 	text-align: center;
 	margin :1rem auto;
 }
+
+.file-link{
+	color:blue;
+
+}
+
+
 label,
 input {
     display: block;
@@ -94,6 +101,9 @@ img{
 
 }
 .expense-list, .leader-board-list, .file-audit-list{
+	overflow: scroll;
+
+	text-overflow: ellipsis;
 	background-color: #fff;
 	display: block;
 	text-align: left;
@@ -117,4 +127,31 @@ img{
 
 .leader-board{
 	display: none;
+}
+
+.pagination-btn,.set-expense-per-row{
+	border-radius: 5px;
+	color:  #ffffff;
+	background-color: rgb(17, 0, 255);
+	border: 2px solid #3b82f6;
+	cursor: pointer;
+	text-align: center;
+	transition: all 250ms;
+	padding:.5rem;
+	margin : .5rem;
+}
+
+#pagination{
+	text-align: center;
+}
+
+#expense-opt{
+	display: inline;
+	margin: 1rem;
+	width : 10%;
+}
+
+.expenses-per-page-div{
+	text-align: right;
+	margin :auto;
 }

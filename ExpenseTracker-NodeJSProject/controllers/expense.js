@@ -27,10 +27,10 @@ exports.addExpense = async (req, res, next) => {
     }
 };
 
-const expensesPerPage = 3;
 
 exports.getExpense = async (req, res, next) => {
     try {
+        const expensesPerPage = req.query.perpage * 1;
          const page = +req.query.page || 1;
          const totalExp = await req.user.getExpenses(); //we can findout length 
 

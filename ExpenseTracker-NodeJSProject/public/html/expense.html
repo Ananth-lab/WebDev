@@ -26,22 +26,33 @@
             <option>Other</option>
         </select>
         <button type="submit" id="submit-btn" class="sub-button">Add Expense</button>
+        <div class="expenses-per-page-div">
+            <span><b>Expenses per page</b></span>
+            <select id="expense-opt">
+                <option>2</option>
+                <option>4</option>
+                <option>6</option>
+                <option>8</option>
+                <option>10</option>
+            </select>
+            <button class = "set-expense-per-row">set</button>
+        </div>
         <ul class="expense-lists">
 
         </ul>
         <div id="pagination"></div>
     </form>
-   
+
     <button id="premium-btn" class="premium-button">Buy Premium</button>
     <div class="leader-board">
         <button class="leader-board-btn">Show Leaderboard</button>
         <ul class="leader-board-ul">
-            
+
         </ul>
-        <button class = "report-download">Download report</button>
-        <button class = "file-audit">Download History</button>
+        <button class="report-download">Download report</button>
+        <button class="file-audit">Download History</button>
         <ul class="file-audit-ul">
-            
+
         </ul>
     </div>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
