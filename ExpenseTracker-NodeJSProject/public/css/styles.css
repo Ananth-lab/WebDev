@@ -37,6 +37,13 @@ form,.leader-board {
 	margin :1rem auto;
 }
 
+.password-reset-link{
+	display: none;
+	color:blue;
+	text-align: center;
+	margin :1rem auto;
+}
+
 .file-link{
 	color:blue;
 
@@ -102,7 +109,6 @@ img{
 }
 .expense-list, .leader-board-list, .file-audit-list{
 	overflow: scroll;
-
 	text-overflow: ellipsis;
 	background-color: #fff;
 	display: block;

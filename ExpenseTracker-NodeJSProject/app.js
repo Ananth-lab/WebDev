@@ -10,6 +10,8 @@ const fs = require("fs");
 
 const path = require("path");
 
+// const https = require("https");
+
 //const compression = require("compression");
 
 const morgan = require("morgan");
@@ -38,6 +40,10 @@ const FileAudit = require("./models/fileaudit");
 
 const app = express();
 
+// const privateKey = fs.readFileSync('server.key');
+
+// const certificate = fs.readFileSync("server.cert");
+
 app.use(bodyParser.json());
 
 app.use(cors());
@@ -46,9 +52,9 @@ app.use(helmet());
 
 //app.use(compression());
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), {flags : "a"})
+const accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), { flags: "a" })
 
-app.use(morgan("combined", {stream : accessLogStream}));
+app.use(morgan("combined", { stream: accessLogStream }));
 
 devenv.config();
 
@@ -90,13 +96,19 @@ User.hasMany(Forgotpassword, {
 Forgotpassword.belongsTo(User);
 
 User.hasMany(FileAudit, {
-  foreignKey : "userId",
-  onDelete : "CASCADE"
+  foreignKey: "userId",
+  onDelete: "CASCADE"
 });
 
 FileAudit.belongsTo(User);
 
 sequelize.sync()
   .then(() => {
+    // https.createServer({ key: privateKey, cert: certificate }, app)
+    //   .listen(process.env.PORT || 3000)
     app.listen(process.env.PORT || 3000)
-  });
+  })
+  .catch(error => {
+    console.log("error is ", error)
+    console.log(process.env.DATABASE_PASSWORD)
+  })
