@@ -55,4 +55,5 @@ mongoose.connect(process.env.MONGO_DB)
     })
 
     app.listen(3000);
+    console.log("Connected!")
   })
