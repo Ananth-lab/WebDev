@@ -44,12 +44,8 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  if (!req.user) {
-    return res.redirect('/login');
-  }
   req.user
-    .populate('cart.items.productId')
-    .execPopulate()
+  .populate('cart.items.productId')
     .then(user => {
       res.render('shop/cart', {
         path: '/cart',
